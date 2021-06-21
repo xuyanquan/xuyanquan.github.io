@@ -1,0 +1,208 @@
+/**
+ * @Author:	  Henry
+ * @DateTime:	2016-07-17 18:17:56
+ * @Description: Description
+ */
+
+/*global style*/
+*{
+	margin: 0;
+	padding: 0;
+	font-family: "Microsoft YaHei";
+}
+body{
+	background-color: #eff0f0;
+}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.hide{ display: none; }
+.hidden{ visibility: hidden; }
+
+/*default theme*/
+.sortblock{
+	border: 1px solid #adb;
+	background-color: #fcfcfc;
+	width: 90%;
+	margin: 0 auto 20px;
+	padding: 20px;
+}
+.link{
+	text-decoration: none;
+	color: #333333;
+	padding-left: 30px;
+	background-size: 16px 16px;
+	background-position: 8px 0px;
+	background-repeat: no-repeat;
+	font-size: 12px;
+	margin-right: 20px;
+	padding-bottom: 10px;
+	display: inline-block;
+	background-image:url(https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/icon/6000.png);
+}
+.link:hover{
+	text-decoration: underline;
+	color: #ff5500;
+}
+
+.company{
+	font: 14px/100% arial,"Hiragino Sans GB","Hiragino Sans GB W3",\5b8b\4f53;
+	background-color: #0aa770;
+	display: inline-block;
+	padding: 10px 20px;
+	font-size: 16px;
+	color: #ffffff;
+}
+.title{ margin-bottom: 20px; }
+
+.sort{
+	padding: 2px 0 1px;
+    margin-bottom: 8px;
+    height: 36px;
+    line-height: 24px;
+    border-bottom: 1px solid #eaeaea;
+    position: relative;
+}
+.sorttxt{
+	cursor: pointer;
+    font-size: 14px;
+    height: 30px;
+    display: block;
+    border-bottom: 1px solid #0aa770;
+    color: #118850;
+    position: absolute;
+    top: 9px;
+}
+
+.label{
+	font-size: 12px;
+	color: #333333;
+	padding: 2px 0;
+}
+
+.copytext{
+	border: 1px solid #0aa770;
+	padding: 1px 5px;
+	border-radius: 2px;
+	margin: 0 2px;
+	color: #ff5500;
+	cursor: pointer;
+    outline: none;
+}
+/*size*/
+.lcopytext{
+	width: 450px;
+}
+
+.copytip{
+	position: fixed;
+	top: 20px;
+	left: 50%;
+	margin-left: -60px;
+	width: 120px;
+	text-align: center;
+	opacity: 0;
+	transition: opacity 0.35s;
+    background-color: #ffffff;
+    padding: 2px 8px;
+    border-radius: 3px;
+    border: 1px solid #0aa770;
+	&.opacityToOne{ opacity: 1; }
+}
+
+.fontpanel{
+	position: fixed;
+	right: 30px;
+	bottom: 20px;
+	z-index: 5;
+}
+.fontb{
+	display: inline-block;
+	float: left;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	border-radius: 3px;
+	margin-right: 8px;
+	cursor: pointer;
+	border: 1px solid #d4d4d4;
+	font-size: 12px;
+	font-style: normal;
+	background-color: rgba(255,255,255,0.25);
+}
+
+/*page fontsize*/
+$sfont: 12px;
+$mfont: 14px;
+$lfont: 16px;
+
+$pageSize: ("lfont", $lfont, 8px 4px), ("mfont", $mfont, 8px 2px), ("sfont", $sfont, 8px 0px);
+
+@each $fontname, $fontsize, $bpos in $pageSize {
+	.#{$fontname+""} .link{
+		font-size: $fontsize;
+		background-position: $bpos;
+	}
+	.#{$fontname+""} .label{
+		font-size: $fontsize;
+	}
+}
+
+
+/*themes*/
+.colorpanel{
+	position: fixed;
+	right: 30px;
+	top: 20px;
+	z-index: 5;
+}
+.colorb{
+	display: inline-block;
+	float: left;
+	width: 20px;
+	height: 20px;
+	border-radius: 3px;
+	margin-right: 8px;
+	cursor: pointer;
+	border: 1px solid #d4d4d4;
+	transition: transform 0.35s;
+	&:hover{
+		transform: scale(1.2,1.2);
+	}
+}
+
+$origin: #ff5500;
+$blur: 	#2599f2;
+$green: #0aa770;
+$purple: #790ef5;
+
+$themes: (origin: $origin, blue: $blur, green: $green, purple: $purple);
+
+@each $theme, $color in $themes {
+	.colorb.#{$theme+""} {
+		background-color: $color;
+	}
+
+	.#{$theme+""} .company {
+		background-color: $color;
+	}
+	.#{$theme+""} .sortblock{
+		border-color: $color;
+	}
+	.#{$theme+""} .sorttxt{
+		border-color: $color;
+		color: $color;
+	}
+	.#{$theme+""} .copytext{
+		border-color: $color;
+		color: $color;
+	}
+	.#{$theme+""} .link:hover{
+		color: $color;
+	}
+	.#{$theme+""} .copytip{
+		border-color: $color;
+	}
+}
+
+
+@import "listtype.scss";
